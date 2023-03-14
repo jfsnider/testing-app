@@ -1,0 +1,72 @@
+<div class="container">
+  <div [hidden]="submitted">
+    <h1>User Form</h1>
+
+    <form (ngSubmit)="onSubmit()" #userForm='ngForm'>
+
+      <div class="form-group">
+        <label for="first-name">First Name:</label>
+        <input type="text" class="form-control" id="first-name" minlength="4" maxlength="15" required [(ngModel)]="model.firstName" name='name'
+               #name='ngModel'>
+      </div>
+      <div [hidden]="name.valid || name.pristine" class="alert alert-danger">
+        Name required! (Min length 4 and Max length 15)
+      </div>
+
+      <div class="form-group">
+        <label for="last-name">Last Name:</label>
+        <input type-="text" class="form-control" id="last-name" minlength="4" maxlength="15" required [(ngModel)]="model.lastName" name='lastName'
+               #lastName="ngModel">
+        <div [hidden]="lastName.valid || lastName.pristine" class="alert alert-danger">
+          Last Name required! (Min length 4 and Max length 15)
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="address">Address:</label>
+        <input type-="text" class="form-control" id="address" minlength="10" maxlength="30" required [(ngModel)]="model.address" name='address'
+               #address="ngModel">
+        <div [hidden]="address.valid || address.pristine" class="alert alert-danger">
+          Address required! (Min length 10 and Max length 30)
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="email">Email:</label>
+        <input type-="email" class="form-control" id="email" pattern=".+@winsupplyinc.com" required [(ngModel)]="model.email" name='email'
+               #email="ngModel">
+        <div [hidden]="email.valid || email.pristine" class="alert alert-danger">
+          Email required! (Needs to end with @winsupplyinc.com)
+        </div>
+        <br>
+        <button type="submit" class="btn btn-success" [disabled]="!userForm.form.valid">Submit</button>
+        <button type="button" class="btn btn-default" (click)="newUser(); userForm.reset()">New User</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+    <div [hidden]="!submitted">
+      <h2>You submitted the following User:</h2>
+      <div class="row">
+        <div class="col-xs-3">Name</div>
+        <div class="col-xs-9">{{ model.firstName }}</div>
+      </div>
+      <div class="row">
+        <div class="col-xs-3">Last Name</div>
+        <div class="col-xs-9">{{ model.lastName }}</div>
+      </div>
+      <div class="row">
+        <div class="col-xs-3">Address</div>
+        <div class="col-xs-9">{{ model.address }}</div>
+      </div>
+      <div class="row">
+        <div class="col-xs-3">Email</div>
+        <div class="col-xs-9">{{ model.email }}</div>
+      </div>
+    </div>
+
+
+
+
+
